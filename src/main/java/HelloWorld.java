@@ -1,6 +1,6 @@
 public class HelloWorld {
 
-    String helloWorld(){
+    static String helloWorld(){
         return "Hello World";
     }
 }

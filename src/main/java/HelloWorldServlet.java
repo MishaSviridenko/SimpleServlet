@@ -12,8 +12,7 @@ public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
 
-        HelloWorld helloWorld = new HelloWorld();
-        String message = helloWorld.helloWorld();
+        String message = HelloWorld.helloWorld();
         request.setAttribute(Constants.MESSAGE, message);
         forward(Constants.SLASH + Constants.START_PAGE, request, response);
     }
