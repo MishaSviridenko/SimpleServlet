@@ -1,5 +1,4 @@
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,11 +14,14 @@ public class HelloWorldServlet extends HttpServlet {
 
         HelloWorld helloWorld = new HelloWorld();
         String message = helloWorld.helloWorld();
-
-        ServletContext servletContext = getServletContext();
         request.setAttribute(Constants.MESSAGE, message);
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(
-                Constants.SLASH + Constants.START_PAGE);
-        requestDispatcher.forward(request, response);
+        forward(Constants.SLASH + Constants.START_PAGE, request, response);
+    }
+
+    private void forward(String url, HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+        rd.forward(request, response);
     }
 }
